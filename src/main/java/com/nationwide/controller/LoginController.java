@@ -55,7 +55,13 @@ public class LoginController {
 	
 	@GetMapping("/{bearerToken}")
 	public ResponseLoginDto authenticateWithToken(@PathVariable String bearerToken) {
+		System.out.println(bearerToken);
 		return service.authenticateWithToken(bearerToken);
+	}
+	
+	@GetMapping("/account/{username}")
+	public boolean checkAvailability (@PathVariable String username) {
+		return service.checkAvailability(username);
 	}
 	
 }

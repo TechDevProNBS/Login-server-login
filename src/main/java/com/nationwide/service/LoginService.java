@@ -29,8 +29,9 @@ public class LoginService {
 	}
 	
 	public void deleteAccount(RequestAccountDto accountDto) {
-		accountInterface.deleteUser(accountDto.getUsername());
+		accountInterface.authenticateUser(accountDto);
 		Long userId = accountInterface.getIdByUsername(accountDto.getUsername());
+		accountInterface.deleteUser(accountDto.getUsername());
 		tokenInterface.deleteAllAuthToken(String.valueOf(userId));
 	}
 	
@@ -56,4 +57,8 @@ public class LoginService {
 		response.setBearerToken(token.getBearerToken());
 		return response;
 	}	
+	
+	public boolean checkAvailability(String username) {
+		return accountInterface.checkAvailability(username);
+	}
 }
