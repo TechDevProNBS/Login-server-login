@@ -23,6 +23,9 @@ public interface AccountInterface {
 	
 	@RequestMapping(path = "/api/account/id/{userId}", method = {RequestMethod.GET})
 	public String getUsernameById(@PathVariable("userId") Long userId);
+	
+	@RequestMapping("api/account/available/{username}")
+	public boolean checkAvailability(@PathVariable("username") String username);
 
 	@RequestMapping(path = "/api/account/new", method = {RequestMethod.POST})
 	public ResponseAccountDto addUser(@RequestBody RequestAccountDto accountDto);
